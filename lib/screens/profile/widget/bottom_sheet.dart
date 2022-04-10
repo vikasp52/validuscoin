@@ -25,8 +25,10 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
 
   @override
   void initState() {
-    textEditController.text = widget.value;
     super.initState();
+    if (mounted) {
+      textEditController.text = widget.value;
+    }
   }
 
   @override
@@ -184,8 +186,10 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
 
     try {
       if (widget.profile == null) {
+        print('Insert is called');
         myDatabase.insertProfile(profilesCompanion!);
       } else {
+        print('update is called');
         myDatabase.updateProfile(widget.profile!);
       }
     } catch (e) {
